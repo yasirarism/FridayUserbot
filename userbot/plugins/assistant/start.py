@@ -2,7 +2,6 @@
 # 
 # Please Don't Kang Without Credits
 # A Plugin For Assistant Bot 
-# x0x
 
 from telethon import events, custom, Button
 from telethon.tl.types import (
@@ -32,7 +31,7 @@ async def start(event):
     if event.from_id == bot.uid:
         await tgbot.send_message(
            vent,
-           message="Hi Master, It's Me Your Assistant.",
+           message="Hi Master, It's Me Your Assistant. Need Some Help?",
            buttons = [
            [Button.url("Repo 🛡️", "https://github.com/StarkGang/FridayUserbot")],
            [Button.url("Join Channel 📃", "t.me/Fridayot")]
@@ -44,7 +43,26 @@ async def start(event):
            message=starttext,
            link_preview=False,
            buttons = [
-           [Button.url("Repo 🛡️", "https://github.com/StarkGang/FridayUserbot")],
-           [Button.url("Join Channel 📃", "t.me/Fridayot")]
+           [custom.Button.inline("Deploy your Friday 🇮🇳", data="deploy")],
+           [Button.url("Help Me ❓", "t.me/Fridayot")]
        ]
       )
+
+
+
+
+# Data's
+
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"deploy")))
+    async def help(event):
+            if event.query.user_id is not bot.uid:
+                await tgbot.send_message(
+                    event.chat_id,
+                    text="You Can Deploy Friday In Heroku By Following Steps Bellow, You Can See Some Quick Guides On Support Channel Or On Your Own Assistant Bot. \nThank You For Contacting Me.",
+                    buttons = [
+                    [Button.url("Deploy Tutorial 📺", "https://youtu.be/xfHcm_e92eQ")],
+                    [Button.url("Need Help ❓", "t.me/FridaySupportOfficial")]
+                 ]
+                )
+      
+                   
