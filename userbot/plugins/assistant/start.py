@@ -12,6 +12,11 @@ from telethon.tl.types import (
 
 import emoji
 from googletrans import Translator
+import re
+from math import ceil
+from userbot.plugins import inlinestats
+from telethon import custom, events, Button
+from userbot import CMD_LIST
 from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 from telethon.utils import get_display_name
 from userbot.utils import admin_cmd, sudo_cmd
