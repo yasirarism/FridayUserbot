@@ -78,6 +78,7 @@ async def help(event):
         e.is_private
     )
 ))
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"dnd")))
 async def all_messages_catcher(event):
     await event.delete()
     await tgbot.send_message(event.chat_id, "Started PM Permit Forward")
