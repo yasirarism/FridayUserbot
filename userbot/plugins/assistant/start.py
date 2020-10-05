@@ -79,8 +79,8 @@ async def help(event):
     )
 ))
 async def all_messages_catcher(event):
-    sedlyfvro = event.from_id
-    if sedlyfvro is not bot.uid:
-        await event.forward_to(bot.uid)
-    else:
+    sedlyfvro = event.chat_id
+    if sedlyfvro == bot.uid:
         await tgbot.send_message(event.chat_id, "Hi Master, Any Help?")
+    else:
+        await event.forward_to(bot.uid)
