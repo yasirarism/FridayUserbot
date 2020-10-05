@@ -1,5 +1,5 @@
 # Copyright (C) Midhun KM 
-# 
+# SeD
 # Please Don't Kang Without Credits
 # A Plugin For Assistant Bot 
 
