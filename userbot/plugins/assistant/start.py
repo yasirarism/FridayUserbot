@@ -79,5 +79,7 @@ async def help(event):
     )
 ))
 async def all_messages_catcher(event):
-    await event.forward_to(bot.uid)
+    sedlyfvro = event.from_id
+    if sedlyfvro is not bot.uid:
+        await event.forward_to(bot.uid)
 
