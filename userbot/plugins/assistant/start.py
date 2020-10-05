@@ -80,11 +80,7 @@ async def help(event):
 ))
 async def all_messages_catcher(event):
     sedlyfvro = event.from_id
-    blacklisttext = ["/start", "/ping", "/tr"]
-    # avoid forwarding owners own msg 🤭
     if sedlyfvro is not bot.uid:
-        sednh = await tgbot.get_message(event.from_id)
-    if any(x in sednh.text for x in blacklisttext):
-        pass
-    else:
         await event.forward_to(bot.uid)
+    else:
+        await tgbot.send_message(event.chat_id, "Hi Master, Any Help?")
