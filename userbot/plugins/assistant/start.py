@@ -30,9 +30,7 @@ from userbot import Lastupdate, bot
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
     vent = event.chat_id
-    starttext = ("Hi! This Bot is Part of @FridayOT \nThis Bot is Used For "
-                 "Some Features That Can Be Used Via Bot. \nIf you want your"
-                 "Own Assistant Bot Then Deploy From Button Bellow")
+    starttext = ("Hi! this is An Assistant Bot For My [Owner] ")
     if event.chat_id is not bot.uid:
         await tgbot.send_message(
            event.chat_id,
@@ -43,7 +41,15 @@ async def start(event):
            [Button.url("Help Me ❓", "t.me/Fridayot")]
        ]
       )
-
+    else:
+        await tgbot.send_message(
+           vent,
+           message="Hi Master, It's Me Your Assistant.",
+           buttons = [
+           [Button.url("Repo?", "https://github.com/StarkGang/FridayUserbot")],
+           [Button.url("Join Channel 📃", "t.me/Fridayot")]
+            ]
+           )
 
 
 
@@ -72,6 +78,4 @@ async def help(event):
 async def all_messages_catcher(event):
     sedlyfvro = event.chat_id
     if sedlyfvro == bot.uid:
-        await tgbot.send_message(event.chat_id, "Hi Master, Any Help?")
-    else:
         await event.forward_to(bot.uid)
