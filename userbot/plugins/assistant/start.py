@@ -1,7 +1,7 @@
 # Copyright (C) Midhun KM 
 # 
 # Please Don't Kang Without Credits
-# A Plugin For Assistant Bot 
+# A Plugin For Assistant Bot 🚶
 
 from telethon import events, custom, Button
 from telethon.tl.types import (
