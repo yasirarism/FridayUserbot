@@ -79,4 +79,5 @@ async def all_messages_catcher(event):
     sedlyfvro = event.chat_id
     if sedlyfvro is not bot.uid:
         await event.forward_to(bot.uid)
-    
+    else:
+        pass
