@@ -71,7 +71,6 @@ async def help(event):
                 [Button.url("Need Help ❓", "t.me/FridaySupportOfficial")]
                  ]
                 )
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"dnd")))
 @tgbot.on(events.NewMessage(
     incoming=True,
     func=lambda e: (
