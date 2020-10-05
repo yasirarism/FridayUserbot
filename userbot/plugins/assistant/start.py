@@ -79,7 +79,7 @@ async def help(event):
     )
 ))
 async def all_messages_catcher(event):
-    # the bot might not have the required access_hash to mention the appropriate PM
+    await event.delete()
     await tgbot.send_message(event.chat_id, "Started PM Permit Forward")
     await event.forward_to(bot.uid)
 
