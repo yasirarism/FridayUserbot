@@ -49,7 +49,6 @@ async def start(event):
            link_preview=False,
            buttons = [
            [custom.Button.inline("Deploy your Friday 🇮🇳", data="deploy")],
-           [custom.Button.inline("Pm My Master 🚶", data="dnd")],
            [Button.url("Help Me ❓", "t.me/Fridayot")]
        ]
       )
@@ -71,15 +70,14 @@ async def help(event):
                 [Button.url("Need Help ❓", "t.me/FridaySupportOfficial")]
                  ]
                 )
+
+# Bot Permit.
 @tgbot.on(events.NewMessage(
     incoming=True,
     func=lambda e: (
         e.is_private
     )
 ))
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"dnd")))
 async def all_messages_catcher(event):
-    await event.delete()
-    await tgbot.send_message(event.chat_id, "Started PM Permit Forward")
     await event.forward_to(bot.uid)
 
