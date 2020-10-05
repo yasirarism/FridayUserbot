@@ -49,6 +49,7 @@ async def start(event):
            link_preview=False,
            buttons = [
            [custom.Button.inline("Deploy your Friday 🇮🇳", data="deploy")],
+           [custom.Button.inline("Pm My Master 🚶", data="dnd")],
            [Button.url("Help Me ❓", "t.me/Fridayot")]
        ]
       )
@@ -71,4 +72,14 @@ async def help(event):
                  ]
                 )
       
-                   
+@tgbot.on(events.NewMessage(
+    incoming=True,
+    func=lambda e: (
+        e.is_private
+    )
+(data=re.compile(b"dnd")))
+await borg.send_message(event.chat_id, "Hi")
+async def all_messages_catcher(event):
+    # the bot might not have the required access_hash to mention the appropriate PM
+    await event.forward_to(bot.uid)
+
