@@ -31,7 +31,16 @@ from userbot import Lastupdate, bot
 async def start(event):
     vent = event.chat_id
     starttext = ("Hi! this is An Assistant Bot For My [Owner] ")
-    if event.chat_id is not bot.uid:
+    if event.chat_id == bot.uid:
+        await tgbot.send_message(
+           vent,
+           message="Hi Master, It's Me Your Assistant.",
+           buttons = [
+           [Button.url("Repo?", "https://github.com/StarkGang/FridayUserbot")],
+           [Button.url("Join Channel 📃", "t.me/Fridayot")]
+            ]
+           )
+    else:
         await tgbot.send_message(
            event.chat_id,
            message=starttext,
@@ -41,16 +50,6 @@ async def start(event):
            [Button.url("Help Me ❓", "t.me/Fridayot")]
        ]
       )
-    else:
-        await tgbot.send_message(
-           vent,
-           message="Hi Master, It's Me Your Assistant.",
-           buttons = [
-           [Button.url("Repo?", "https://github.com/StarkGang/FridayUserbot")],
-           [Button.url("Join Channel 📃", "t.me/Fridayot")]
-            ]
-           )
-
 
 
 # Data's
