@@ -71,7 +71,7 @@ async def help(event):
                 [Button.url("Need Help ❓", "t.me/FridaySupportOfficial")]
                  ]
                 )
-      
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"dnd")))
 @tgbot.on(events.NewMessage(
     incoming=True,
     func=lambda e: (
@@ -79,6 +79,7 @@ async def help(event):
     )
 ))
 async def all_messages_catcher(event):
+    tgbot.send_message(event.chat_id, "Started PM Permit Forward")
     # the bot might not have the required access_hash to mention the appropriate PM
     await event.forward_to(bot.uid)
 
