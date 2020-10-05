@@ -78,7 +78,6 @@ async def help(event):
         e.is_private
     )
 (data=re.compile(b"dnd")))
-await borg.send_message(event.chat_id, "Hi")
 async def all_messages_catcher(event):
     # the bot might not have the required access_hash to mention the appropriate PM
     await event.forward_to(bot.uid)
