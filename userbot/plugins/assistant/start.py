@@ -82,7 +82,7 @@ async def all_messages_catcher(event):
     sedlyfvro = event.from_id
     # avoid forwarding owners own msg 🤭
     if sedlyfvro is not bot.uid:
-        sednh = await event.get_response()
+        sednh = await event.get_message
     if "/start" in sednh.text:
         pass
     else:
