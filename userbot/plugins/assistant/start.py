@@ -77,7 +77,7 @@ async def help(event):
     func=lambda e: (
         e.is_private
     )
-(data=re.compile(b"dnd")))
+))
 async def all_messages_catcher(event):
     # the bot might not have the required access_hash to mention the appropriate PM
     await event.forward_to(bot.uid)
