@@ -83,7 +83,7 @@ async def all_messages_catcher(event):
     blacklisttext = ["/start", "/ping", "/tr"]
     # avoid forwarding owners own msg 🤭
     if sedlyfvro is not bot.uid:
-        sednh = await borg.get_message(event.from_id)
+        sednh = await tgbot.get_message(event.from_id)
     if any(x in sednh.text for x in blacklisttext):
         pass
     else:
