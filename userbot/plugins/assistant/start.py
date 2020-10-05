@@ -33,16 +33,7 @@ async def start(event):
     starttext = ("Hi! This Bot is Part of @FridayOT \nThis Bot is Used For "
                  "Some Features That Can Be Used Via Bot. \nIf you want your"
                  "Own Assistant Bot Then Deploy From Button Bellow")
-    if event.from_id == bot.uid:
-        await tgbot.send_message(
-           vent,
-           message="Hi Master, It's Me Your Assistant. Need Some Help?",
-           buttons = [
-           [Button.url("Repo 🛡️", "https://github.com/StarkGang/FridayUserbot")],
-           [Button.url("Join Channel 📃", "t.me/Fridayot")]
-            ]
-           )
-    else:
+    if event.chat_id is not bot.uid:
         await tgbot.send_message(
            event.chat_id,
            message=starttext,
