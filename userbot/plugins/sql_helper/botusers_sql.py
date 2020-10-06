@@ -13,7 +13,7 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-# Stole From Spechdie's "No PM's Bot" 😢🤭🚶
+# Stole From Spechide's "No PM's Bot" 😢🤭🚶
 """ users Table """
 
 from sqlalchemy import (
