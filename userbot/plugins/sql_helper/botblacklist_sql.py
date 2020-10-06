@@ -13,7 +13,7 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-# Copied From Spechdie's "No PM's Bot" 😢🤭🚶
+# Copied From Spechide's "No PM's Bot" 😢🤭🚶
 """ blacklist Table """
 from telethon.tl.types.messages import Messages
 from telethon.tl.functions.channels import GetMessagesRequest
