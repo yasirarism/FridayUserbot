@@ -31,7 +31,7 @@ from userbot import Lastupdate, bot
 async def start(event):
     vent = event.chat_id
     starttext = ("Hi! this is An Assistant Bot For My [Owner] ")
-    if event.chat_id == bot.uid:
+    if event.from_id == bot.uid:
         await tgbot.send_message(
            vent,
            message="Hi Master, It's Me Your Assistant.",
