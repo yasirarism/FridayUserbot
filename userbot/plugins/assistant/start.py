@@ -108,4 +108,4 @@ async def all_messages_catcher(event):
 async def sed(event):
         replied = event.raw_text
         tgbot.send_message(event.chat_id, replied)
-        await tgbot.send_message("Ok, Broadcasting This Message")
+        await tgbot.send_message(event.chat_id, "Ok, Broadcasting This Message")
