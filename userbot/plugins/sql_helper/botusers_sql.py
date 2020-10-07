@@ -35,7 +35,7 @@ class Users(BASE):
     um_id = Column(Integer)
 
     def __init__(self, message_id, chat_id, um_id):
-        self.id = event.id
+        self.id = message_id
         self.chat_id = str(chat_id)  # ensure string
         self.um_id = um_id
 
