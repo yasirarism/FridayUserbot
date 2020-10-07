@@ -77,10 +77,13 @@ async def help(event):
                 )
 
 # Bot Permit.
-@tgbot.on(events.NewMessage)
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def all_messages_catcher(event):
+    ignore = ['/start', '/tr', '/ping', 'fuck', 'madarchod']
     sedlyfvro = event.raw_text
-    if event.chat_id == bot.uid:
+    if any(a in event.raw_text for a in ignore):
+        pass
+    elif event.chat_id == bot.uid:
         pass
     else:
         sender = await event.get_sender()
