@@ -80,3 +80,12 @@ async def all_messages_catcher(event):
         pass
     else:
         await event.forward_to(bot.uid)
+
+
+# Add User To Database ,Later For Broadcast Purpose
+# (C) @SpecHide
+add_user_to_db(
+        fwded_mesg.message_id,
+        message.from_user.id,
+        message.message_id
+    )
