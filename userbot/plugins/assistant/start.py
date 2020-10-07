@@ -26,7 +26,7 @@ from datetime import datetime
 from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 import time
 from userbot import Lastupdate, bot
-from userbot.plugins.helper_sql.botusers_sql import add_user_to_db
+from userbot.plugins.sql_helper.botusers_sql import add_user_to_db
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
     vent = event.chat_id
