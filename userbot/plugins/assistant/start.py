@@ -86,7 +86,7 @@ async def all_messages_catcher(event):
         sender = await event.get_sender()
         chat_id = event.chat_id
         sender_id = event.sender_id
-        sed = await sedlyfvro.forward_to(bot.uid)
+        sed = await event.forward_to(bot.uid)
         
 
 # Add User To Database ,Later For Broadcast Purpose
