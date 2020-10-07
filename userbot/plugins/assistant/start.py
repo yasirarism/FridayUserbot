@@ -77,7 +77,7 @@ async def help(event):
                 )
 
 # Bot Permit.
-@client.on(events.NewMessage)
+@tgbot.on(events.NewMessage)
 async def all_messages_catcher(event):
     sedlyfvro = event.raw_text
     if event.chat_id == bot.uid:
