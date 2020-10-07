@@ -45,6 +45,7 @@ async def start(event):
            vent,
            message="Hi Master, It's Me Your Assistant.",
            buttons = [
+           [custom.Button.inline("Broadcast 🔥", data="mebroadcast")],
            [Button.url("Repo?", "https://github.com/StarkGang/FridayUserbot")],
            [Button.url("Join Channel 📃", "t.me/Fridayot")]
             ]
@@ -98,3 +99,13 @@ async def all_messages_catcher(event):
             event.sender_id,
             event.from_id
         )
+
+
+
+# Test 
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"mebroadcast")))
+@tgbot.on(events.NewMessage)
+async def sed(event):
+        replied = await event.get_reply_message()
+        await tgbot.send_message("Ok, Broadcasting This Message")
+        
