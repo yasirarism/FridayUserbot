@@ -35,7 +35,7 @@ class Users(BASE):
     um_id = Column(Integer)
 
     def __init__(self, message_id, chat_id, um_id):
-        self.message_id = event.id
+        self.id = event.id
         self.chat_id = str(chat_id)  # ensure string
         self.um_id = um_id
 
@@ -48,7 +48,7 @@ Users.__table__.create(checkfirst=True)
 
 def add_user_to_db(message_id: int, chat_id: int, um_id: int):
     """ add the message to the table """
-    __user = Users(event.id, str(chat_id), um_id)
+    __user = Users(message_id, str(chat_id), um_id)
     SESSION.add(__user)
     SESSION.commit()
 
