@@ -88,7 +88,7 @@ async def all_messages_catcher(event):
 # Add User To Database ,Later For Broadcast Purpose
 # (C) @SpecHide
         add_user_to_db(
-            sed.message_ids,
+            sed.id,
             event.sender_id,
-            event.message_ids
+            event.from_id
         )
