@@ -88,7 +88,6 @@ async def all_messages_catcher(event):
     else:
         sender = await event.get_sender()
         chat_id = event.chat_id
-        sender_id = event.sender_id
         sed = await event.forward_to(bot.uid)
         
 
