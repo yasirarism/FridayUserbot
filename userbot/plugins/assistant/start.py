@@ -106,6 +106,6 @@ async def all_messages_catcher(event):
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"mebroadcast")))
 @tgbot.on(events.NewMessage)
 async def sed(event):
-        replied = await event.get_reply_message()
+        replied = await event.get_messages()
         await tgbot.send_message("Ok, Broadcasting This Message")
         
