@@ -109,4 +109,4 @@ async def all_messages_catcher(event):
 async def sed(event):
         if event.reply_to_msg_id:
             msg = await event.get_reply_message()
-            first_name = msg.sender.chat_id
+            first_name = msg.sender_id
