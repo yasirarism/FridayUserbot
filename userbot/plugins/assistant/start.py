@@ -103,7 +103,7 @@ async def all_messages_catcher(event):
 
 
 # Test 
-@tgbot.on(events.NewMessage(func=lambda e: e.is_private)
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
         reply_to_id = event.message.id
         if event.reply_to_msg_id:
