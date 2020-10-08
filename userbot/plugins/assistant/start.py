@@ -106,8 +106,10 @@ async def all_messages_catcher(event):
 # Test 
 @tgbot.on(events.NewMessage)
 async def sed(event):
-        msg = await event.get_reply_message()
-        real_nigga = msg.id
-        sedintel = f"ID => {real_nigga}"
-        await tgbot.send_message(bot.uid, sedintel)
-        
+        if event.from_id == bot.uid:
+            msg = await event.get_reply_message()
+            real_nigga = msg.id
+            sedintel = f"ID => {real_nigga}"
+            await tgbot.send_message(bot.uid, sedintel)
+        else:
+            pass
