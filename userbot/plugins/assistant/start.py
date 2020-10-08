@@ -34,6 +34,8 @@ from telethon import events
 from datetime import datetime
 from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 import time
+from telethon.tl.functions.photos import GetUserPhotosRequest
+from telethon.tl.functions.users import GetFullUserRequest
 from userbot import Lastupdate, bot
 from userbot.plugins.sql_helper.botusers_sql import add_user_to_db
 @tgbot.on(events.NewMessage(pattern="^/start"))
