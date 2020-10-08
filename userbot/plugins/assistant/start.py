@@ -109,4 +109,4 @@ async def sed(event):
         if event.reply_to_msg_id:
             msg = await event.get_reply_message()
             real_nigga = msg.sender_id
-            event.forward_to(real_nigga)
+            await event.forward_to(real_nigga)
