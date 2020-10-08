@@ -108,5 +108,5 @@ async def all_messages_catcher(event):
 async def sed(event):
         if event.reply_to_msg_id:
             msg = await event.get_reply_message()
-            real_nigga = event.fwd_from.from_id
+            real_nigga = msg.id
             await event.forward_to(real_nigga)
