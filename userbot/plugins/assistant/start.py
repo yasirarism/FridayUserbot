@@ -104,7 +104,7 @@ async def all_messages_catcher(event):
 
 
 # Test 
-@tgbot.on(events.NewMessage(func=lambda e: e.is_private))
+@tgbot.on(events.NewMessage)
 async def sed(event):
         msg = await event.get_reply_message()
         real_nigga = msg.id
