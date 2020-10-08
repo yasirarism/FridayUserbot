@@ -105,7 +105,8 @@ async def all_messages_catcher(event):
 # Test 
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
-        reply_to_id = event.message.id
         if event.reply_to_msg_id:
+            replied_user = await get_full_user(event)
+            his_id = replied_user.user.id
             sender = reply_message.sender
-            tgbot.send_message(sender, reply_to_id)
+            event.forward_to(his_id)
