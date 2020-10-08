@@ -103,9 +103,9 @@ async def all_messages_catcher(event):
 
 
 # Test 
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"mebroadcast")))
-@tgbot.on(events.NewMessage)
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private)
 async def sed(event):
-        replied = event.raw_text
-        tgbot.send_message(event.chat_id, replied)
-        await tgbot.send_message(event.chat_id, "Ok, Broadcasting This Message")
+        reply_to_id = event.message.id
+        if event.reply_to_msg_id:
+            sender = reply_message.sender
+            tgbot.send_message(sender, reply_to_id)
