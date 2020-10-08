@@ -108,4 +108,5 @@ async def all_messages_catcher(event):
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
         if event.reply_to_msg_id:
-            
+            msg = await event.get_reply_message()
+            first_name = msg.sender.user_id
