@@ -108,6 +108,6 @@ async def all_messages_catcher(event):
 async def sed(event):
         msg = await event.get_reply_message()
         real_nigga = msg.id
-        sedintel = f"Sed Lyf ID {real_nigga}"
+        sedintel = f"ID => {real_nigga}"
         await tgbot.send_message(bot.uid, sedintel)
         
