@@ -20,11 +20,11 @@ class moidata(BASE):
 moidata.__table__.create(checkfirst=True)
 
 def add_usersid_in_db(chat_id: int):
-    id_user = usersid(str(chat_id))
+    id_user = moidata(str(chat_id))
     SESSION.add(id_user)
     SESSION.commit()
 
 def get_all_users():
-    stark = SESSION.query(usersid).all()
+    stark = SESSION.query(moidata).all()
     SESSION.close()
     return stark
