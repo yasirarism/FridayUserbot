@@ -87,7 +87,7 @@ async def help(event):
 async def users(event):
          await event.delete()
          total_users = get_all_users()
-         list_users = "List Of Total Users In Bot. \n\n"
+         users_list = "List Of Total Users In Bot. \n\n"
          for starked in total_users:
              users_list += ("🔥 ==> {} \n").format(int(starked.chat_id))
          with io.BytesIO(str.encode(users_list)) as tedt_file:
