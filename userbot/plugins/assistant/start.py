@@ -127,23 +127,24 @@ async def sed(event):
 # broadcast
 @tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)"))
 async def sedlyfbro(event):
-         msgtobroadcast = event.pattern_match.group(1)
-         userstobc = get_all_users()
-         error_count = 0
-         sent_count = 0
+         if event.from_id = bot.uid:
+             msgtobroadcast = event.pattern_match.group(1)
+             userstobc = get_all_users()
+             error_count = 0
+             sent_count = 0
          for userstobc in userstobc:
              try:
                  sent_count += 1
-                 await tgbot.send_message(int(chat_id), msgtobroadcast)
+                 await tgbot.send_message(int(userstobc.chat_id), msgtobroadcast)
                  await tgbot.send_message(
                  bot.uid,
                  f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}",
              )
-             expect Excepection as starkerror:
-                 await tgbot.send_message(
-                 bot.uid,
-                 f"Error : {error_count}\nError : {starkerror} \nUsers : {chat_id}",
-             )
-     
-                 
+         except Exception as starkerror:
+             await tgbot.send_message(
+             bot.uid,
+             f"Error : {error_count}\nError : {starkerror} \nUsers : {chat_id}",
+         )
+         else: 
+             pass
                  
