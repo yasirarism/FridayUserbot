@@ -127,13 +127,13 @@ async def sed(event):
 # broadcast
 @tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)"))
 async def sedlyfbro(event):
-         if event.from_id == bot.uid:
+        if event.from_id == bot.uid:
              msgtobroadcast = event.pattern_match.group(1)
              userstobc = get_all_users()
              error_count = 0
              sent_count = 0
-        for userstobc in userstobc:
-            try:
+         for userstobc in userstobc:
+             try:
                  sent_count += 1
                  await tgbot.send_message(int(userstobc.chat_id), msgtobroadcast)
                  await tgbot.send_message(
