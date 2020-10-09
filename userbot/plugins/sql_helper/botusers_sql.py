@@ -56,7 +56,7 @@ def add_user_to_db(msg_id: int, chat_id: int, um_id: int):
 def get_user_id(message_id: int):
     """ get the user_id from the message_id """
     try:
-        s__ = SESSION.query(Users).get(str(event.id))
+        s__ = SESSION.query(Users).get(str(msg_id))
         return int(s__.chat_id), s__.um_id
     finally:
         SESSION.close()
