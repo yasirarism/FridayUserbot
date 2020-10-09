@@ -112,11 +112,11 @@ async def sed(event):
         real_nigga = msg.id
         user_id, reply_message_id = his_userid(
         msg.id
-       )
+        )
         await event.send_message(
         user_id
         )
-     else:
+    else:
         pass
 
 # broadcast
