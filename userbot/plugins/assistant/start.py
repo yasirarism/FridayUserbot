@@ -162,5 +162,5 @@ async def sedlyfsir(event):
                  pass
     await tgbot.send_message(
         bot.uid,
-        f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}"
+        f"Broadcast Done in {sent_count} Group/Users and I got {error_count} Error and Total Number Was {len(userstobc)}"
         )
