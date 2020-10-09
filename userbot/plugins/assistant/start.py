@@ -94,7 +94,7 @@ async def users(event):
             tedt_file.name = "userlist.txt"
             await tgbot.send_file(
                 event.chat_id,
-                tedt_file
+                tedt_file,
                 force_document=True,
                 allow_cache=False
                 )
