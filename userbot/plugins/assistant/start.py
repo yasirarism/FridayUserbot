@@ -80,15 +80,11 @@ async def help(event):
                 )
 
 # Bot Permit.
-@tgbot.on(events.NewMessage(func=lambda e: e.is_private))
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private, e.sender_id == bot.uid))
 async def all_messages_catcher(event):
     ignore = ['/start', '/tr', '/ping', 'fuck', 'madarchod']
     sedlyfvro = event.raw_text
     if any(a in event.raw_text for a in ignore):
-        pass
-    elif event.chat_id == bot.uid:
-        pass
-    else:
         sender = await event.get_sender()
         chat_id = event.chat_id
         sed = await event.forward_to(bot.uid)
@@ -109,29 +105,24 @@ async def all_messages_catcher(event):
 
 
 # Test 
-@tgbot.on(events.NewMessage)
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private, e.sender_id == bot.uid))
 async def sed(event):
-        if event.from_id == bot.uid:
-            msg = await event.get_reply_message()
-            real_nigga = msg.id
-            user_id, reply_message_id = his_userid(
-            msg.id
-            )
-            await event.send_message(
-            user_id
-        )
-        else:
-            pass
-
+    msg = await event.get_reply_message()
+    real_nigga = msg.id
+    user_id, reply_message_id = his_userid(
+    msg.id
+    )
+    await event.send_message(
+    user_id
+    )
 
 # broadcast
-@tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)"))
+@tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)", func=lambda e: e.is_private, e.sender_id == bot.uid))
 async def sedlyfbro(event):
-    if event.from_id == bot.uid:
-         msgtobroadcast = event.pattern_match.group(1)
-         userstobc = get_all_users()
-         error_count = 0
-         sent_count = 0
+    msgtobroadcast = event.pattern_match.group(1)
+    userstobc = get_all_users()
+    error_count = 0
+    sent_count = 0
     for starkcast in userstobc:
         try:
             sent_count += 1
@@ -145,6 +136,4 @@ async def sedlyfbro(event):
          bot.uid,
          f"Error : {error_count}\nError : {starkerror} \nUsers : {chat_id}",
      )
-    else: 
-        pass
                  
