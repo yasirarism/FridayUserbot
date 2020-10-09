@@ -129,11 +129,11 @@ async def sedlyfbro(event):
             await tgbot.send_message(int(starkcast.chat_id), msgtobroadcast)
             await tgbot.send_message(
             bot.uid,
-            f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}",
-         )
-         except Exception as error:
+            f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}"
+            )
+         except Exception as e:
              await tgbot.send_message(
              bot.uid,
-             f"Error : {error_count}\nError : {error} \nUsers : {chat_id}",
-         )
+             f"Error : {error_count}\nError : {e} \nUsers : {chat_id}"
+             )
                  
