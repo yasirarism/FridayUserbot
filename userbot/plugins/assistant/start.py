@@ -36,7 +36,7 @@ import time
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot import Lastupdate, bot
-from userbot.plugins.sql_helper.botusers_sql import add_user_to_db
+from userbot.plugins.sql_helper.botusers_sql import add_user_to_db, get_user_id
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
     vent = event.chat_id
@@ -97,8 +97,8 @@ async def all_messages_catcher(event):
 # (C) @SpecHide
         add_user_to_db(
             sed.id,
-            event.sender_id,
-            event.from_id
+            event.from_id,
+            event.id
         )
 
 
@@ -109,7 +109,15 @@ async def sed(event):
         if event.from_id == bot.uid:
             msg = await event.get_reply_message()
             real_nigga = msg.id
-            sedintel = f"ID => {real_nigga}"
-            await tgbot.send_message(bot.uid, sedintel)
+            user_id, reply_message_id = get_user_id(
+            msg.id
+            )
+        try:
+            await event.forward_to(
+            user_id,
+            reply_message_id,
+        )
+        except UserIsBlocked:
+            await event.reply("Bot Blocked Sar.")
         else:
             pass
