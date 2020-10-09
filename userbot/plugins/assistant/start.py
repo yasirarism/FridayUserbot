@@ -117,7 +117,5 @@ async def sed(event):
             user_id,
             reply_message_id,
         )
-        except UserIsBlocked:
-            await event.reply("Bot Blocked Sar.")
         else:
             pass
