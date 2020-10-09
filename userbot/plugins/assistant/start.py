@@ -19,6 +19,7 @@ from telethon.tl.types import (
 )
 
 import emoji
+import asyncio
 from googletrans import Translator
 import re
 from math import ceil
@@ -134,15 +135,14 @@ async def sedlyfsir(event):
         try:
             sent_count += 1
             await tgbot.send_message(int(starkcast.chat_id), msgtobroadcast)
-            await tgbot.send_message(
-            bot.uid,
-            f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}"
-            )
+            await asyncio.sleep(0.2)
         except Exception as e:
             try:
-                 await tgbot.send_message(
-                 bot.uid,
-                 f"Error : {error_count}\nError : {e} \nUsers : {chat_id}"
+                 logger.info(f"Error : {error_count}\nError : {e} \nUsers : {chat_id}"
                  )
             except:
                  pass
+    await tgbot.send_message(
+        bot.uid,
+        f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}"
+        )
