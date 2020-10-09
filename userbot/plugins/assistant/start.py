@@ -36,7 +36,7 @@ import time
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot import Lastupdate, bot
-from userbot.plugins.sql_helper.botusers_sql import add_user_to_db, get_user_id
+from userbot.plugins.sql_helper.botusers_sql import add_me_in_db, his_userid
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
     vent = event.chat_id
@@ -95,7 +95,7 @@ async def all_messages_catcher(event):
 
 # Add User To Database ,Later For Broadcast Purpose
 # (C) @SpecHide
-        add_user_to_db(
+        add_me_in_db(
             sed.id,
             event.from_id,
             event.id
@@ -109,7 +109,7 @@ async def sed(event):
         if event.from_id == bot.uid:
             msg = await event.get_reply_message()
             real_nigga = msg.id
-            user_id, reply_message_id = get_user_id(
+            user_id, reply_message_id = his_userid(
             msg.id
             )
             await event.forward_to(
