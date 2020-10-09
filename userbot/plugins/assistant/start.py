@@ -86,6 +86,8 @@ async def all_messages_catcher(event):
     sedlyfvro = event.raw_text
     if any(a in event.raw_text for a in ignore):
         pass
+    elif event.from_id == bot.uid:
+        pass
     else:
         sender = await event.get_sender()
         chat_id = event.chat_id
@@ -108,13 +110,13 @@ async def all_messages_catcher(event):
 # Test 
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
-    if event.chat_id == bot.uid:
+    if event.from_id == bot.uid:
         msg = await event.get_reply_message()
         real_nigga = msg.id
         user_id, reply_message_id = his_userid(
         msg.id
         )
-        await event.send_message(
+        await event.forward_to(
         user_id
         )
     else:
