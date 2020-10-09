@@ -80,15 +80,16 @@ async def help(event):
                 )
 
 # Bot Permit.
-@tgbot.on(events.NewMessage(func=lambda e: e.is_private and e.sender_id == bot.uid))
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def all_messages_catcher(event):
     ignore = ['/start', '/tr', '/ping', 'fuck', 'madarchod']
     sedlyfvro = event.raw_text
     if any(a in event.raw_text for a in ignore):
+        pass
+    else:
         sender = await event.get_sender()
         chat_id = event.chat_id
         sed = await event.forward_to(bot.uid)
-        
 
 # Add User To Database ,Later For Broadcast Purpose
 # (C) @SpecHide
