@@ -105,16 +105,19 @@ async def all_messages_catcher(event):
 
 
 # Test 
-@tgbot.on(events.NewMessage(func=lambda e: e.is_private, e.sender_id == bot.uid))
+@tgbot.on(events.NewMessage(func=lamda e: e.is_private))
 async def sed(event):
-    msg = await event.get_reply_message()
-    real_nigga = msg.id
-    user_id, reply_message_id = his_userid(
-    msg.id
-    )
-    await event.send_message(
-    user_id
-    )
+    if event.chat_id == bot.uid:
+        msg = await event.get_reply_message()
+        real_nigga = msg.id
+        user_id, reply_message_id = his_userid(
+        msg.id
+       )
+        await event.send_message(
+        user_id
+        )
+     else:
+        pass
 
 # broadcast
 @tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)", func=lambda e: e.is_private, e.sender_id == bot.uid))
