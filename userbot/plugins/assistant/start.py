@@ -36,7 +36,7 @@ import time
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from userbot import Lastupdate, bot
-from userbot.plugins.sql_helper.botusers_sql import add_me_in_db, his_userid
+from userbot.plugins.sql_helper.botusers_sql import add_me_in_db, his_userid, add_usersid_in_db, get_all_users
 
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
@@ -102,6 +102,10 @@ async def all_messages_catcher(event):
             event.id
         )
 
+        add_usersid_in_db(
+            event.from_id
+        )
+
 
 
 # Test 
@@ -113,8 +117,33 @@ async def sed(event):
             user_id, reply_message_id = his_userid(
             msg.id
             )
-            await event.forward_to(
+            await event.send_message(
             user_id
         )
         else:
             pass
+
+
+# broadcast
+@tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)"))
+async def sedlyfbro(event):
+         msgtobroadcast = event.pattern_match.group(1)
+         userstobc = get_all_users()
+         error_count = 0
+         sent_count = 0
+         for userstobc in userstobc:
+             try:
+                 sent_count += 1
+                 await tgbot.send_message(int(chat_id), msgtobroadcast)
+                 await tgbot.send_message(
+                 bot.uid,
+                 f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}",
+             )
+             expect Excepection as starkerror:
+                 await tgbot.send_message(
+                 bot.uid,
+                 f"Error : {error_count}\nError : {starkerror} \nUsers : {chat_id}",
+             )
+     
+                 
+                 
