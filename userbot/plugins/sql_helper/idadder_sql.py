@@ -9,19 +9,15 @@ from . import (
 )
 
 
-class idadder(BASE):
-    """ Table to store the id """
-    __tablename__ = "idadders"
-    chat_id = Column(String(14))
+class moidata(BASE):
+    __tablename__ = "keklyf"
+    chat_id = Column(String(14), primary_key=True)
 
     def __init__(self, chat_id):
-        self.chat_id = str(chat_id)  # ensure string
-
-    def __repr__(self):
-        return "<User %s>" % self.chat_id
+        self.chat_id = chat_id
 
 
-idadder.__table__.create(checkfirst=True)
+moidata.__table__.create(checkfirst=True)
 
 def add_usersid_in_db(chat_id: int):
     id_user = usersid(str(chat_id))
