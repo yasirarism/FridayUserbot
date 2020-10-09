@@ -132,8 +132,8 @@ async def sedlyfbro(event):
              userstobc = get_all_users()
              error_count = 0
              sent_count = 0
-         for userstobc in userstobc:
-             try:
+        for userstobc in userstobc:
+            try:
                  sent_count += 1
                  await tgbot.send_message(int(userstobc.chat_id), msgtobroadcast)
                  await tgbot.send_message(
