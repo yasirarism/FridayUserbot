@@ -43,15 +43,19 @@ from userbot.plugins.sql_helper.idadder_sql import add_usersid_in_db, get_all_us
 
 @tgbot.on(events.NewMessage(pattern="^/start"))
 async def start(event):
+    starkbot = await tgbot.get_me()
+    bot_id = starkbot.first_name
+    you_name = event.from_id
+    sed = await event.get_user()
+    ripbro = sed.first_name
     vent = event.chat_id
-    starttext = ("Hi! this is An Assistant Bot For My [Owner] ")
-    if event.from_id == bot.uid:
+    starttext = (f"Hello {ripbro} ! \nI am {bot_id} , An Powerfull Assistant Bot to Serve My [Master](tg://user?id={bot.uid}) \nAll Messages That you Send here is forwarded to my master \nPlease Be Polite To My Master Else You Know !")    if event.from_id == bot.uid:
         await tgbot.send_message(
            vent,
-           message="Hi Master, It's Me Your Assistant.",
+           message=f"Hi Master, It's Me {bot_id}, Your Assistant ! \nWhat You Wanna Do today ?",
            buttons = [
            [custom.Button.inline("Show Users 🔥", data="users")],
-           [Button.url("Repo?", "https://github.com/StarkGang/FridayUserbot")],
+           [custom.Button.inline("Commands For Assistant", data="gibcmd")],
            [Button.url("Join Channel 📃", "t.me/Fridayot")]
             ]
            )
@@ -89,7 +93,7 @@ async def users(event):
          total_users = get_all_users()
          users_list = "List Of Total Users In Bot. \n\n"
          for starked in total_users:
-             users_list += ("🔥 ==> {} \n").format(int(starked.chat_id))
+             users_list += ("==> {} \n").format(int(starked.chat_id))
          with io.BytesIO(str.encode(users_list)) as tedt_file:
              tedt_file.name = "userlist.txt"
              await tgbot.send_file(
@@ -98,6 +102,15 @@ async def users(event):
                  force_document=True,
                  allow_cache=False
                  )
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
+async def users(event):
+         await event.delete()
+         grabon = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤/broadcast - Sends Message To all Users In Bot"
+         await tgbot.send_message(
+             bot.uid,
+             grabon
+         )
+             
 
 # Bot Permit.
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
