@@ -49,7 +49,7 @@ async def start(event):
            vent,
            message="Hi Master, It's Me Your Assistant.",
            buttons = [
-           [custom.Button.inline("Broadcast 🔥", data="mebroadcast")],
+           [custom.Button.inline("Show Users 🔥", data="users")],
            [Button.url("Repo?", "https://github.com/StarkGang/FridayUserbot")],
            [Button.url("Join Channel 📃", "t.me/Fridayot")]
             ]
@@ -79,6 +79,23 @@ async def help(event):
                 [Button.url("Deploy Tutorial 📺", "https://youtu.be/xfHcm_e92eQ")],
                 [Button.url("Need Help ❓", "t.me/FridaySupportOfficial")]
                  ]
+                )
+
+
+@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"users")))
+async def users(event):
+        await event.delete()
+        total_users = get_all_users()
+        list_users = "List Of Total Users In Bot. \n\n"
+        for total_users in starked:
+            users_list += ("🔥 ==> {} \n").format(int(starked.chat_id))
+        with io.BytesIO(str.encode(users_list)) as tedt_file:
+            tedt_file.name = "userlist.txt"
+            await tgbot.send_file(
+                event.chat_id,
+                tedt_file
+                force_document=True,
+                allow_cache=False
                 )
 
 # Bot Permit.
