@@ -112,7 +112,6 @@ async def sed(event):
             user_id, reply_message_id = get_user_id(
             msg.id
             )
-        try:
             await event.forward_to(
             user_id,
             reply_message_id,
