@@ -128,7 +128,9 @@ async def all_messages_catcher(event):
 # Test 
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
-    if event.from_id == bot.uid:
+    if event.raw_text.startswith("/"):
+        pass
+    elif event.from_id == bot.uid:
         msg = await event.get_reply_message()
         real_nigga = msg.id
         user_id, reply_message_id = his_userid(
