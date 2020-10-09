@@ -22,7 +22,6 @@ from telethon.utils import get_display_name
 from userbot.utils import admin_cmd, sudo_cmd
 from userbot.uniborgConfig import Config
 
-
 @borg.on(events.NewMessage(
     incoming=True,
     blacklist_chats=Config.UB_BLACK_LIST_CHAT,
@@ -31,9 +30,10 @@ from userbot.uniborgConfig import Config
     )
 ))
 async def all_messages_catcher(event):
+    if Config.TAG_FEATURE == "ENABLE":
+    return
     # the bot might not have the required access_hash to mention the appropriate PM
     await event.forward_to(Config.TG_BOT_USER_NAME_BF_HER)
-
     # construct message
     # the message format is stolen from @MasterTagAlertBot
     ammoca_message = ""
