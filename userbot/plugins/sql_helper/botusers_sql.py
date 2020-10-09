@@ -30,12 +30,12 @@ from . import (
 class Users(BASE):
     """ Table to store the received messages """
     __tablename__ = "users"
-    message_id = Column(Integer, primary_key=True)
+    msg_id = Column(Integer, primary_key=True)
     chat_id = Column(String(14))
     um_id = Column(Integer)
 
     def __init__(self, message_id, chat_id, um_id):
-        self.id = message_id
+        self.msg_id = msg_id
         self.chat_id = str(chat_id)  # ensure string
         self.um_id = um_id
 
@@ -46,7 +46,7 @@ class Users(BASE):
 Users.__table__.create(checkfirst=True)
 
 
-def add_user_to_db(message_id: int, chat_id: int, um_id: int):
+def add_user_to_db(msg_id: int, chat_id: int, um_id: int):
     """ add the message to the table """
     __user = Users(message_id, str(chat_id), um_id)
     SESSION.add(__user)
