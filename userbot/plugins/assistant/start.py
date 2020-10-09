@@ -137,5 +137,5 @@ async def sedlyfsir(event):
                  bot.uid,
                  f"Error : {error_count}\nError : {e} \nUsers : {chat_id}"
                  )
-            expect:
+            except:
                  pass
