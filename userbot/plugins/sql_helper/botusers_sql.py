@@ -52,6 +52,12 @@ def add_me_in_db(message_id: int, chat_id: int, um_id: int):
     SESSION.add(__user)
     SESSION.commit()
 
+def add_usersid_in_db(chat_id: int):
+    """ add the message to the table """
+    id_user = usersid(str(chat_id))
+    SESSION.add(id_user)
+    SESSION.commit()
+
 
 def his_userid(message_id: int):
     """ get the user_id from the message_id """
@@ -60,3 +66,9 @@ def his_userid(message_id: int):
         return int(s__.chat_id), s__.um_id
     finally:
         SESSION.close()
+
+
+def get_all_users():
+    stark = SESSION.query(usersid).all()
+    SESSION.close()
+    return stark
