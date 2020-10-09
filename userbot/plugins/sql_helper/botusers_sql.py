@@ -34,7 +34,7 @@ class Users(BASE):
     chat_id = Column(String(14))
     um_id = Column(Integer)
 
-    def __init__(self, message_id, chat_id, um_id):
+    def __init__(self, msg_id, chat_id, um_id):
         self.msg_id = msg_id
         self.chat_id = str(chat_id)  # ensure string
         self.um_id = um_id
@@ -48,12 +48,12 @@ Users.__table__.create(checkfirst=True)
 
 def add_user_to_db(msg_id: int, chat_id: int, um_id: int):
     """ add the message to the table """
-    __user = Users(message_id, str(chat_id), um_id)
+    __user = Users(msg_id, str(chat_id), um_id)
     SESSION.add(__user)
     SESSION.commit()
 
 
-def get_user_id(message_id: int):
+def get_user_id(msg_id: int):
     """ get the user_id from the message_id """
     try:
         s__ = SESSION.query(Users).get(str(msg_id))
