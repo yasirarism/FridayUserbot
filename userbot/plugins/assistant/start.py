@@ -85,19 +85,19 @@ async def help(event):
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"users")))
 async def users(event):
-        await event.delete()
-        total_users = get_all_users()
-        list_users = "List Of Total Users In Bot. \n\n"
-        for total_users in starked:
-            users_list += ("🔥 ==> {} \n").format(int(starked.chat_id))
-        with io.BytesIO(str.encode(users_list)) as tedt_file:
-            tedt_file.name = "userlist.txt"
-            await tgbot.send_file(
-                event.chat_id,
-                tedt_file,
-                force_document=True,
-                allow_cache=False
-                )
+         await event.delete()
+         total_users = get_all_users()
+         list_users = "List Of Total Users In Bot. \n\n"
+         for total_users in starked:
+             users_list += ("🔥 ==> {} \n").format(int(starked.chat_id))
+         with io.BytesIO(str.encode(users_list)) as tedt_file:
+             tedt_file.name = "userlist.txt"
+             await tgbot.send_file(
+                 event.chat_id,
+                 tedt_file,
+                 force_document=True,
+                 allow_cache=False
+                 )
 
 # Bot Permit.
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
