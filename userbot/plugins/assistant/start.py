@@ -80,7 +80,7 @@ async def help(event):
                 )
 
 # Bot Permit.
-@tgbot.on(events.NewMessage(func=lambda e: e.is_private, e.sender_id == bot.uid))
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private and e.sender_id == bot.uid))
 async def all_messages_catcher(event):
     ignore = ['/start', '/tr', '/ping', 'fuck', 'madarchod']
     sedlyfvro = event.raw_text
@@ -105,7 +105,7 @@ async def all_messages_catcher(event):
 
 
 # Test 
-@tgbot.on(events.NewMessage(func=lamda e: e.is_private))
+@tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
     if event.chat_id == bot.uid:
         msg = await event.get_reply_message()
@@ -120,7 +120,7 @@ async def sed(event):
         pass
 
 # broadcast
-@tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)", func=lambda e: e.is_private, e.sender_id == bot.uid))
+@tgbot.on(events.NewMessage(pattern="^/broadcast ?(.*)", func=lambda e: e.is_private and e.sender_id == bot.uid))
 async def sedlyfsir(event):
     msgtobroadcast = event.pattern_match.group(1)
     userstobc = get_all_users()
