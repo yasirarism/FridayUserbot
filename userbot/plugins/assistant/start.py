@@ -22,6 +22,7 @@ import emoji
 import asyncio
 from googletrans import Translator
 import re
+import io
 from math import ceil
 from userbot.plugins import inlinestats
 from telethon import custom, events, Button
