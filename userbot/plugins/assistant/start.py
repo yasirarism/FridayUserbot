@@ -131,9 +131,9 @@ async def sedlyfbro(event):
             bot.uid,
             f"Sent : {sent_count}\nError : {error_count}\nTotal : {len(userstobc)}",
          )
-    except Exception as starkerror:
-         await tgbot.send_message(
-         bot.uid,
-         f"Error : {error_count}\nError : {starkerror} \nUsers : {chat_id}",
-     )
+         except Exception as starkerror:
+             await tgbot.send_message(
+             bot.uid,
+             f"Error : {error_count}\nError : {starkerror} \nUsers : {chat_id}",
+         )
                  
