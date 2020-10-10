@@ -140,6 +140,7 @@ async def ban(event):
 @tgbot.on(events.NewMessage(pattern="^/unbun(?: |$)(.*)"))
 async def nothanos(event):
     userids = []
+    noob = event.from_id
     async for user in tgbot.iter_participants(
         event.chat_id, filter=ChannelParticipantsAdmins
     ):
