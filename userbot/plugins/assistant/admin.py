@@ -164,10 +164,7 @@ async def nothanos(event):
         await event.reply("`Unbanned Successfully. Granting another chance.🚶`")
     expect BadRequestError:
         await event.reply("`No Permission 🤭`")
-    except UserIdInvalidError:
-        await event.reply("`Uh oh my unban logic broke!`")
-
-
+        return
 
 async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
