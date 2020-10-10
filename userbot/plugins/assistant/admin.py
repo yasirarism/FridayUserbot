@@ -167,6 +167,56 @@ async def nothanos(event):
         await event.reply("`No Permission 🤭`")
         return
 
+
+
+@tgbot.on(events.NewMessage(pattern="^/prumote(?: |$)(.*)"))
+async def promote(event):
+    userids = []
+    noob = event.from_id
+    async for user in tgbot.iter_participants(
+        event.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        userids.append(user.id)
+    if noob not in userids:
+        await event.reply("You're not an admin!")
+        return
+    """ For .promote command, promotes the replied/tagged person """
+    # Get targeted chat
+    chat = await event.get_chat()
+    # Grab admin status or creator in a chat
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, also return
+    if not admin and not creator:
+        await event.reply("Me Not Admin 🥺")
+        return
+    new_rights = ChatAdminRights(
+        add_admins=False,
+        invite_users=False,
+        change_info=False,
+        ban_users=True,
+        delete_messages=True,
+        pin_messages=True,
+    )
+    user, rank = await get_user_from_event(event)
+    if not rank:
+        rank = "mememaster"  # Just in case.
+    if user:
+        pass
+    else:
+        return
+    # Try to promote if current user is admin or creator
+    try:
+        await event.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await event.reply("`Promoted Successfully! Now gib Party`")
+
+    # If Telethon spit BadRequestError, assume
+    # we don't have Promote permission
+    except BadRequestError:
+        await event.reply("No Permission To Promote 🤭")
+        return
+
 async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(" ", 1)
