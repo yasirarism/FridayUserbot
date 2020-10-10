@@ -45,11 +45,8 @@ from userbot.plugins.sql_helper.idadder_sql import add_usersid_in_db, get_all_us
 async def start(event):
     starkbot = await tgbot.get_me()
     bot_id = starkbot.first_name
-    you_name = event.from_id
-    sed = await you_name.get_user()
-    ripbro = sed.first_name
     vent = event.chat_id
-    starttext = (f"Hello {ripbro} ! \nI am {bot_id} , An Powerfull Assistant Bot to Serve My [Master](tg://user?id={bot.uid}) \nAll Messages That you Send here is forwarded to my master \nPlease Be Polite To My Master Else You Know !")
+    starttext = (f"Hello, I am {bot_id} , An Powerfull Assistant Bot to Serve My [Master](tg://user?id={bot.uid}) \nAll Messages That you Send here is forwarded to my master \nPlease Be Polite To My Master Else You Know !")
     if event.from_id == bot.uid:
         await tgbot.send_message(
            vent,
