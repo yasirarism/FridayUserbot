@@ -105,7 +105,7 @@ async def users(event):
          await event.delete()
          grabon = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤/broadcast - Sends Message To all Users In Bot"
          await tgbot.send_message(
-             bot.uid,
+             event.chat_id,
              grabon
          )
              
@@ -174,6 +174,6 @@ async def sedlyfsir(event):
             except:
                  pass
     await tgbot.send_message(
-        bot.uid,
+        event.chat_id,
         f"Broadcast Done in {sent_count} Group/Users and I got {error_count} Error and Total Number Was {len(userstobc)}"
         )
