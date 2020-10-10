@@ -139,30 +139,31 @@ async def ban(event):
 
 @tgbot.on(events.NewMessage(pattern="^/unbun(?: |$)(.*)"))
 async def nothanos(event):
-    """ For .unban command, unbans the replied/tagged person """
-    # Here laying the sanity check
+    userids = []
+    async for user in tgbot.iter_participants(
+        event.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        userids.append(user.id)
+    if noob not in userids:
+        await event.reply("You're not an admin!")
+        return
     chat = await event.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
-
-    # Well
     if not admin and not creator:
-        await event.reply(NO_ADMIN)
+        await event.reply("Me Not Admin 🥺")
         return
-
-    # If everything goes well...
-    await event.reply("`Unbanning...`")
-
     user = await get_user_from_event(event)
     user = user[0]
     if user:
         pass
     else:
         return
-
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
-        await event.reply("```Unbanned Successfully. Granting another chance.```")
+        await event.reply("`Unbanned Successfully. Granting another chance.🚶`")
+    expect BadRequestError:
+        await event.reply("`No Permission 🤭`")
     except UserIdInvalidError:
         await event.reply("`Uh oh my unban logic broke!`")
 
