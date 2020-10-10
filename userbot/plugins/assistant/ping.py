@@ -3,13 +3,13 @@
 # Please Don't Kang Without Credits
 # A Plugin For Assistant Bot
 # x0x
-
 import time
 from datetime import datetime
 
 from telethon import events
 
-from userbot import Lastupdate, bot
+from userbot import bot
+from userbot import Lastupdate
 
 
 def get_readable_time(seconds: int) -> str:

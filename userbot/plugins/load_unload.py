@@ -1,4 +1,6 @@
-from userbot.utils import admin_cmd, load_module, remove_plugin
+from userbot.utils import admin_cmd
+from userbot.utils import load_module
+from userbot.utils import remove_plugin
 
 
 @borg.on(admin_cmd(pattern="load ?(.*)", outgoing=True))

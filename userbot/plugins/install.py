@@ -2,7 +2,8 @@ import asyncio
 import os
 from pathlib import Path
 
-from userbot.utils import admin_cmd, load_module
+from userbot.utils import admin_cmd
+from userbot.utils import load_module
 
 DELETE_TIMEOUT = 5
 

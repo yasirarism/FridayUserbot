@@ -3,7 +3,6 @@
 # Please Don't Kang Without Credits
 # A Plugin For Assistant Bot
 # x0x
-
 import emoji
 from googletrans import Translator
 from telethon import events

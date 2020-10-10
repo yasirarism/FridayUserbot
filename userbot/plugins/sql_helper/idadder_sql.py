@@ -1,6 +1,8 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column
+from sqlalchemy import String
 
-from . import BASE, SESSION
+from . import BASE
+from . import SESSION
 
 
 class Moidata(BASE):
