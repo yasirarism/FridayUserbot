@@ -87,23 +87,26 @@ async def help(event):
 
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"users")))
 async def users(event):
-         await event.delete()
-         total_users = get_all_users()
-         users_list = "List Of Total Users In Bot. \n\n"
-         for starked in total_users:
-             users_list += ("==> {} \n").format(int(starked.chat_id))
-         with io.BytesIO(str.encode(users_list)) as tedt_file:
-             tedt_file.name = "userlist.txt"
-             await tgbot.send_file(
-                 event.chat_id,
-                 tedt_file,
-                 force_document=True,
-                 allow_cache=False
-                 )
+         if event.from_id == bot.uid:
+             await event.delete()
+             total_users = get_all_users()
+             users_list = "List Of Total Users In Bot. \n\n"
+             for starked in total_users:
+                 users_list += ("==> {} \n").format(int(starked.chat_id))
+             with io.BytesIO(str.encode(users_list)) as tedt_file:
+                 tedt_file.name = "userlist.txt"
+                 await tgbot.send_file(
+                     event.chat_id,
+                     tedt_file,
+                     force_document=True,
+                     allow_cache=False
+                     )
+         else:
+            pass
 @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"gibcmd")))
 async def users(event):
          await event.delete()
-         grabon = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤/broadcast - Sends Message To all Users In Bot"
+         grabon = "Hello Here Are Some Commands \n➤ /start - Check if I am Alive \n➤ /ping - Pong! \n➤ /tr <lang-code> \n➤ /broadcast - Sends Message To all Users In Bot \n➤ /id - Shows ID of User And Media. \n➤ /addnote - Add Note \n➤ /notes - Shows Notes \n➤ /rmnote - Remove Note "
          await tgbot.send_message(
              event.chat_id,
              grabon
