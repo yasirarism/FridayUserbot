@@ -99,7 +99,7 @@ async def on_snip_list(event):
     OUT_STR = "Available Snips:\n"
     if len(all_snips) > 0:
         for a_snip in all_snips:
-            OUT_STR += f"🔥 `{a_snip.snip}` \n"
+            OUT_STR += f"➤ `?{a_snip.snip}` \n"
     else:
         OUT_STR = "No Snips. Start Saving using `/addnote`"
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
