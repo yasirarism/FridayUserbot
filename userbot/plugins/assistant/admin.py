@@ -93,7 +93,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
 
-@tgbot.on(events.NewMessage(pattern="^/ban(?: |$)(.*)"))
+@tgbot.on(events.NewMessage(pattern="^/bun(?: |$)(.*)"))
 async def ban(event):
     """ For .ban command, bans the replied/tagged person """
     # Here laying the sanity check
@@ -122,7 +122,7 @@ async def ban(event):
     try:
         reply = await event.get_reply_message()
         if reply:
-            await reply.delete()
+            await event.reply("Banning...")
     except BadRequestError:
         await event.reply("`I dont have message nuking rights! But still he was banned!`")
         return
