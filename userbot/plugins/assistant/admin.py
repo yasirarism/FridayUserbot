@@ -95,21 +95,15 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
-async def is_administrator(user_id: int, message):
-    admin = False
-    async for user in tgbot.iter_participants(
-        message.chat_id, filter=ChannelParticipantsAdmins
-    ):
-        if user_id == user.id or user_id in bot.uid:
-            admin = True
-            break
-    return admin
-
-
-
 @tgbot.on(events.NewMessage(pattern="^/bun(?: |$)(.*)"))
 async def ban(event):
-    if not await is_administrator(user_id=event.from_id, message=event):
+    noob = event.from_id
+    userids = []
+    async for user in tgbot.iter_participants(
+        event.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        userids.append(user.id)
+    if noob not in userids:
         await event.reply("You're not an admin!")
         return
     chat = await event.get_chat()
