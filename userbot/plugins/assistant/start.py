@@ -46,7 +46,7 @@ async def start(event):
     starkbot = await tgbot.get_me()
     bot_id = starkbot.first_name
     you_name = event.from_id
-    sed = await event.get_user()
+    sed = await tgbot.get_user()
     ripbro = sed.first_name
     vent = event.chat_id
     starttext = (f"Hello {ripbro} ! \nI am {bot_id} , An Powerfull Assistant Bot to Serve My [Master](tg://user?id={bot.uid}) \nAll Messages That you Send here is forwarded to my master \nPlease Be Polite To My Master Else You Know !")
