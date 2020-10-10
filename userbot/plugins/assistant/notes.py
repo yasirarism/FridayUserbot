@@ -43,7 +43,8 @@ async def on_snip(event):
 
 
 @tgbot.on(
-    events.NewMessage(pattern="^/addnote ?(.*)", func=lambda e: e.sender_id == bot.uid)
+    events.NewMessage(pattern="^/addnote ?(.*)",
+                      func=lambda e: e.sender_id == bot.uid)
 )
 async def _(event):
     name = event.pattern_match.group(1)
@@ -71,7 +72,8 @@ async def _(event):
             snip.get("fr"),
         )
         await event.reply(
-            "Note {name} saved successfully. Get it with ?{name}".format(name=name)
+            "Note {name} saved successfully. Get it with ?{name}".format(
+                name=name)
         )
     else:
         await event.reply("Reply to a message with `snips keyword` to save the snip")
@@ -102,7 +104,8 @@ async def on_snip_list(event):
 
 
 @tgbot.on(
-    events.NewMessage(pattern="^/rmnote (\S+)", func=lambda e: e.sender_id == bot.uid)
+    events.NewMessage(pattern="^/rmnote (\S+)",
+                      func=lambda e: e.sender_id == bot.uid)
 )
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
