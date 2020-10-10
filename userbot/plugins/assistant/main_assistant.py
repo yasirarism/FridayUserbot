@@ -14,16 +14,12 @@ import asyncio
 import io
 import re
 
-from telethon import Button
-from telethon import custom
-from telethon import events
+from telethon import Button, custom, events
 from telethon.tl.functions.users import GetFullUserRequest
 
 from userbot import bot
-from userbot.plugins.sql_helper.botusers_sql import add_me_in_db
-from userbot.plugins.sql_helper.botusers_sql import his_userid
-from userbot.plugins.sql_helper.idadder_sql import add_usersid_in_db
-from userbot.plugins.sql_helper.idadder_sql import get_all_users
+from userbot.plugins.sql_helper.botusers_sql import add_me_in_db, his_userid
+from userbot.plugins.sql_helper.idadder_sql import add_usersid_in_db, get_all_users
 
 
 @tgbot.on(events.NewMessage(pattern="^/start"))
@@ -38,17 +34,14 @@ async def start(event):
     if event.from_id == bot.uid:
         await tgbot.send_message(
             vent,
-            message=
-            f"Hi Master, It's Me {bot_id}, Your Assistant ! \nWhat You Wanna Do today ?",
+            message=f"Hi Master, It's Me {bot_id}, Your Assistant ! \nWhat You Wanna Do today ?",
             buttons=[
                 [custom.Button.inline("Show Users 🔥", data="users")],
+                [custom.Button.inline("Commands For Assistant", data="gibcmd")],
                 [
-                    custom.Button.inline("Commands For Assistant",
-                                         data="gibcmd")
-                ],
-                [
-                    Button.url("Add Me to Group 👥",
-                               f"t.me/{bot_username}?startgroup=true")
+                    Button.url(
+                        "Add Me to Group 👥", f"t.me/{bot_username}?startgroup=true"
+                    )
                 ],
             ],
         )
@@ -75,13 +68,9 @@ async def help(event):
     if event.query.user_id is not bot.uid:
         await tgbot.send_message(
             event.chat_id,
-            message=
-            "You Can Deploy Friday In Heroku By Following Steps Bellow, You Can See Some Quick Guides On Support Channel Or On Your Own Assistant Bot. \nThank You For Contacting Me.",
+            message="You Can Deploy Friday In Heroku By Following Steps Bellow, You Can See Some Quick Guides On Support Channel Or On Your Own Assistant Bot. \nThank You For Contacting Me.",
             buttons=[
-                [
-                    Button.url("Deploy Tutorial 📺",
-                               "https://youtu.be/xfHcm_e92eQ")
-                ],
+                [Button.url("Deploy Tutorial 📺", "https://youtu.be/xfHcm_e92eQ")],
                 [Button.url("Need Help ❓", "t.me/FridaySupportOfficial")],
             ],
         )
@@ -97,10 +86,9 @@ async def users(event):
             users_list += ("==> {} \n").format(int(starked.chat_id))
         with io.BytesIO(str.encode(users_list)) as tedt_file:
             tedt_file.name = "userlist.txt"
-            await tgbot.send_file(event.chat_id,
-                                  tedt_file,
-                                  force_document=True,
-                                  allow_cache=False)
+            await tgbot.send_file(
+                event.chat_id, tedt_file, force_document=True, allow_cache=False
+            )
     else:
         pass
 
@@ -149,7 +137,8 @@ async def sed(event):
     events.NewMessage(
         pattern="^/broadcast ?(.*)",
         func=lambda e: e.is_private and e.sender_id == bot.uid,
-    ))
+    )
+)
 async def sedlyfsir(event):
     msgtobroadcast = event.pattern_match.group(1)
     userstobc = get_all_users()
@@ -162,8 +151,7 @@ async def sedlyfsir(event):
             await asyncio.sleep(0.2)
         except Exception as e:
             try:
-                logger.info(
-                    f"Error : {error_count}\nError : {e} \nUsers : {chat_id}")
+                logger.info(f"Error : {error_count}\nError : {e} \nUsers : {chat_id}")
             except:
                 pass
     await tgbot.send_message(

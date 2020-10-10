@@ -2,11 +2,9 @@
 # CREDITS: @WhySooSerious, @Sur_vivor
 import time
 
-from uniborg.util import admin_cmd
-from uniborg.util import sudo_cmd
+from uniborg.util import admin_cmd, sudo_cmd
 
-from userbot import ALIVE_NAME
-from userbot import Lastupdate
+from userbot import ALIVE_NAME, Lastupdate
 from userbot.plugins import currentversion
 
 

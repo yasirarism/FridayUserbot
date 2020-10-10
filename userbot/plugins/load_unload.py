@@ -1,6 +1,4 @@
-from userbot.utils import admin_cmd
-from userbot.utils import load_module
-from userbot.utils import remove_plugin
+from userbot.utils import admin_cmd, load_module, remove_plugin
 
 
 @borg.on(admin_cmd(pattern="load ?(.*)", outgoing=True))
@@ -30,5 +28,6 @@ async def unload(event):
         remove_plugin(shortname)
         await event.edit(f"Unloaded {shortname} successfully")
     except Exception as e:
-        await event.edit("Successfully unload {shortname}\n{}".format(
-            shortname, str(e)))
+        await event.edit(
+            "Successfully unload {shortname}\n{}".format(shortname, str(e))
+        )

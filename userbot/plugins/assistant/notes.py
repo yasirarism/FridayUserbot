@@ -1,12 +1,13 @@
-from telethon import events
-from telethon import utils
+from telethon import events, utils
 from telethon.tl import types
 
 from userbot import bot
-from userbot.plugins.sql_helper.snips_sql import add_snip
-from userbot.plugins.sql_helper.snips_sql import get_all_snips
-from userbot.plugins.sql_helper.snips_sql import get_snips
-from userbot.plugins.sql_helper.snips_sql import remove_snip
+from userbot.plugins.sql_helper.snips_sql import (
+    add_snip,
+    get_all_snips,
+    get_snips,
+    remove_snip,
+)
 from userbot.uniborgConfig import Config
 
 TYPE_TEXT = 0
@@ -36,15 +37,14 @@ async def on_snip(event):
         message_id = event.message.id
         if event.reply_to_msg_id:
             message_id = event.reply_to_msg_id
-        await tgbot.send_message(event.chat_id,
-                                 snip.reply,
-                                 reply_to=message_id,
-                                 file=media)
+        await tgbot.send_message(
+            event.chat_id, snip.reply, reply_to=message_id, file=media
+        )
 
 
 @tgbot.on(
-    events.NewMessage(pattern="^/addnote ?(.*)",
-                      func=lambda e: e.sender_id == bot.uid))
+    events.NewMessage(pattern="^/addnote ?(.*)", func=lambda e: e.sender_id == bot.uid)
+)
 async def _(event):
     name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
@@ -71,11 +71,10 @@ async def _(event):
             snip.get("fr"),
         )
         await event.reply(
-            "Note {name} saved successfully. Get it with ?{name}".format(
-                name=name))
+            "Note {name} saved successfully. Get it with ?{name}".format(name=name)
+        )
     else:
-        await event.reply(
-            "Reply to a message with `snips keyword` to save the snip")
+        await event.reply("Reply to a message with `snips keyword` to save the snip")
 
 
 @tgbot.on(events.NewMessage(pattern="^/notes"))
@@ -103,8 +102,8 @@ async def on_snip_list(event):
 
 
 @tgbot.on(
-    events.NewMessage(pattern="^/rmnote (\S+)",
-                      func=lambda e: e.sender_id == bot.uid))
+    events.NewMessage(pattern="^/rmnote (\S+)", func=lambda e: e.sender_id == bot.uid)
+)
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_snip(name)

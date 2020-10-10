@@ -1,8 +1,7 @@
 import asyncio
 from datetime import datetime
 
-from userbot.utils import admin_cmd
-from userbot.utils import sudo_cmd
+from userbot.utils import admin_cmd, sudo_cmd
 
 fridaythumb = "./resources/IMG_20200929_103719_628.jpg"
 

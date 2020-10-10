@@ -8,8 +8,7 @@ from datetime import datetime
 
 from telethon import events
 
-from userbot import bot
-from userbot import Lastupdate
+from userbot import Lastupdate, bot
 
 
 def get_readable_time(seconds: int) -> str:
@@ -40,8 +39,7 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-@tgbot.on(
-    events.NewMessage(pattern="^/ping", func=lambda e: e.sender_id == bot.uid))
+@tgbot.on(events.NewMessage(pattern="^/ping", func=lambda e: e.sender_id == bot.uid))
 async def _(event):
     start = datetime.now()
     end = datetime.now()
