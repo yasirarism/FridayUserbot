@@ -1,9 +1,4 @@
-from userbot.utils import admin_cmd, sudo_cmd, load_module, remove_plugin
-import asyncio
-import os
-from datetime import datetime
-from pathlib import Path
-
+from userbot.utils import admin_cmd, load_module, remove_plugin
 
 
 @borg.on(admin_cmd(pattern="load ?(.*)", outgoing=True))
@@ -22,6 +17,7 @@ async def load(event):
         await event.edit(
             f"Could not load {shortname} because of the following error.\n{str(e)}"
         )
+
 
 @borg.on(admin_cmd(pattern="unload ?(.*)", outgoing=True))
 async def unload(event):

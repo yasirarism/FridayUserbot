@@ -1,9 +1,10 @@
-from userbot.utils import admin_cmd, sudo_cmd
 import asyncio
-import os
 from datetime import datetime
-from pathlib import Path
-fridaythumb = './resources/IMG_20200929_103719_628.jpg'
+
+from userbot.utils import admin_cmd, sudo_cmd
+
+fridaythumb = "./resources/IMG_20200929_103719_628.jpg"
+
 
 @borg.on(admin_cmd(pattern="send ?(.*)"))
 @borg.on(sudo_cmd(pattern="send ?(.*)", allow_sudo=True))
@@ -15,8 +16,8 @@ async def send(event):
     start = datetime.now()
     the_plugin_file = "./userbot/plugins/{}.py".format(input_str)
     end = datetime.now()
-    time_taken_in_ms = (end - start).seconds
-    men = (f"Plugin Name - {input_str}.py \nUploaded By Friday")
+    (end - start).seconds
+    men = f"Plugin Name - {input_str}.py \nUploaded By Friday"
     await event.client.send_file(  # pylint:disable=E0602
         event.chat_id,
         the_plugin_file,

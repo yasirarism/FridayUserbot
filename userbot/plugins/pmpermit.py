@@ -1,12 +1,13 @@
 import asyncio
 import io
 import os
-from userbot.uniborgConfig import Config
+
 from telethon import events, functions
 from telethon.tl.functions.users import GetFullUserRequest
 
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from userbot import ALIVE_NAME, CUSTOM_PMPERMIT
+from userbot.uniborgConfig import Config
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
 if PMPERMIT_PIC is None:
@@ -158,14 +159,14 @@ if Var.PRIVATE_GROUP_ID is not None:
             # don't log verified accounts
 
             return
-        
+
         if PM_ON_OFF == "DISABLE":
             return
-        
+
         if not pmpermit_sql.is_approved(chat_id):
             # pm permit
             await do_pm_permit_action(chat_id, event)
-            
+
     async def do_pm_permit_action(chat_id, event):
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})

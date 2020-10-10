@@ -1,7 +1,9 @@
-from datetime import datetime
-from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 import time
+from datetime import datetime
+
 from userbot import Lastupdate
+from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
+
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -30,6 +32,7 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
+
 @borg.on(admin_cmd(pattern="ping$"))
 @borg.on(sudo_cmd(pattern="ping$", allow_sudo=True))
 async def _(event):
@@ -40,4 +43,6 @@ async def _(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     uptime = get_readable_time((time.time() - Lastupdate))
-    await starkislub.edit(f"**█▀█ █▀█ █▄░█ █▀▀ █ \n█▀▀ █▄█ █░▀█ █▄█ ▄**\n ➲ `{ms}` \n ➲ `{uptime}`")
+    await starkislub.edit(
+        f"**█▀█ █▀█ █▄░█ █▀▀ █ \n█▀▀ █▄█ █░▀█ █▄█ ▄**\n ➲ `{ms}` \n ➲ `{uptime}`"
+    )

@@ -1,9 +1,10 @@
 import re
 from math import ceil
+
+from telethon import Button, custom, events
+
+from userbot import ALIVE_NAME, CMD_LIST
 from userbot.plugins import inlinestats
-from telethon import custom, events, Button
-from userbot import ALIVE_NAME
-from userbot import CMD_LIST
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Friday"
 if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
@@ -23,16 +24,21 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
                 link_preview=False,
             )
         if event.query.user_id == bot.uid and query == "stats":
-           result = builder.article(
-           title="Stats",
-           text=f"**Showing Stats For {DEFAULTUSER}'s Friday** \nNote --> Only Owner Can Check This \n(C) @FridayOT",
-           buttons = [
-                   [custom.Button.inline("Show Stats 🚶", data="terminator")],
-                   [Button.url("Repo 🛡️", "https://github.com/StarkGang/FridayUserbot")],
-                   [Button.url("Join Channel 📃", "t.me/Fridayot")],
-             ]
-         )
+            result = builder.article(
+                title="Stats",
+                text=f"**Showing Stats For {DEFAULTUSER}'s Friday** \nNote --> Only Owner Can Check This \n(C) @FridayOT",
+                buttons=[
+                    [custom.Button.inline("Show Stats 🚶", data="terminator")],
+                    [
+                        Button.url(
+                            "Repo 🛡️", "https://github.com/StarkGang/FridayUserbot"
+                        )
+                    ],
+                    [Button.url("Join Channel 📃", "t.me/Fridayot")],
+                ],
+            )
         await event.answer([result] if result else None)
+
     @tgbot.on(
         events.callbackquery.CallbackQuery(  # pylint:disable=E0602
             data=re.compile(b"helpme_next\((.+?)\)")
@@ -98,13 +104,14 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
     @tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"terminator")))
     async def rip(event):
-            if event.query.user_id == bot.uid:
-                text = inlinestats
-                await event.answer(text, alert=True)
-            else:
-                txt = "You Can't View My Masters Stats"
-                await event.answer(txt, alert=True)
-                
+        if event.query.user_id == bot.uid:
+            text = inlinestats
+            await event.answer(text, alert=True)
+        else:
+            txt = "You Can't View My Masters Stats"
+            await event.answer(txt, alert=True)
+
+
 def paginate_help(page_number, loaded_plugins, prefix):
     number_of_rows = 8
     number_of_cols = 2

@@ -1,13 +1,14 @@
 """Check if userbot alive. If you change these, you become the gayest gay such that even the gay world will disown you."""
 # CREDITS: @WhySooSerious, @Sur_vivor
 import time
+
 from uniborg.util import admin_cmd, sudo_cmd
-from userbot import ALIVE_NAME
-from datetime import datetime
-from userbot import Lastupdate
+
+from userbot import ALIVE_NAME, Lastupdate
 from userbot.plugins import currentversion
 
-#Functions
+
+# Functions
 def get_readable_time(seconds: int) -> str:
     count = 0
     ping_time = ""
@@ -34,6 +35,7 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
 
     return ping_time
+
 
 uptime = get_readable_time((time.time() - Lastupdate))
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Unknown"

@@ -139,7 +139,10 @@ if ENV:
         PM_DATA = os.environ.get("PM_DATA", "ENABLE")
         TAG_FEATURE = os.environ.get("TAG_FEATURE", "ENABLE")
         ASSISTANT_LOG = int(os.environ.get("ASSISTANT_LOG", False))
+
+
 else:
+
     class Config(object):
         DB_URI = None
         # Add your UniBorg Vars Here

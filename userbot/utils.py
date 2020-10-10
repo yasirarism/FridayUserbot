@@ -415,10 +415,7 @@ async def edit_or_reply(event, text):
     return await event.edit(text)
 
 
-
-
-
-# Assistant 
+# Assistant
 def start_assistant(shortname):
     if shortname.startswith("__"):
         pass
@@ -426,8 +423,6 @@ def start_assistant(shortname):
         import importlib
         import sys
         from pathlib import Path
-
-        import userbot.utils
 
         path = Path(f"userbot/plugins/assistant/{shortname}.py")
         name = "userbot.plugins.assistant.{}".format(shortname)
@@ -440,8 +435,6 @@ def start_assistant(shortname):
         import importlib
         import sys
         from pathlib import Path
-
-        import userbot.utils
 
         path = Path(f"userbot/plugins/assistant/{shortname}.py")
         name = "userbot.plugins.assistant.{}".format(shortname)
