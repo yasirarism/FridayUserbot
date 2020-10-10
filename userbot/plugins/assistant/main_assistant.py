@@ -20,7 +20,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 
 from userbot import bot
 from userbot.plugins.sql_helper.botusers_sql import add_me_in_db, his_userid
-from userbot.plugins.sql_helper.idadder_sql import add_usersid_in_db, get_all_users
+from userbot.plugins.sql_helper.idadder_sql import (add_usersid_in_db,
+                                                    get_all_users)
 
 
 @tgbot.on(events.NewMessage(pattern="^/start"))
