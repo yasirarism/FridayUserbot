@@ -208,7 +208,7 @@ async def promote(event):
         return
     # Try to promote if current user is admin or creator
     try:
-        await event.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await event.client(EditAdminRequest(event.chat_id, user.id, new_rights, rank))
         await event.reply("`Promoted Successfully! Now gib Party`")
 
     # If Telethon spit BadRequestError, assume
