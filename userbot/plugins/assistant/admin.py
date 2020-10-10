@@ -162,7 +162,7 @@ async def nothanos(event):
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, UNBAN_RIGHTS))
         await event.reply("`Unbanned Successfully. Granting another chance.🚶`")
-    expect BadRequestError:
+    except BadRequestError:
         await event.reply("`No Permission 🤭`")
         return
 
