@@ -49,7 +49,8 @@ async def start(event):
     sed = await event.get_user()
     ripbro = sed.first_name
     vent = event.chat_id
-    starttext = (f"Hello {ripbro} ! \nI am {bot_id} , An Powerfull Assistant Bot to Serve My [Master](tg://user?id={bot.uid}) \nAll Messages That you Send here is forwarded to my master \nPlease Be Polite To My Master Else You Know !")    if event.from_id == bot.uid:
+    starttext = (f"Hello {ripbro} ! \nI am {bot_id} , An Powerfull Assistant Bot to Serve My [Master](tg://user?id={bot.uid}) \nAll Messages That you Send here is forwarded to my master \nPlease Be Polite To My Master Else You Know !")
+    if event.from_id == bot.uid:
         await tgbot.send_message(
            vent,
            message=f"Hi Master, It's Me {bot_id}, Your Assistant ! \nWhat You Wanna Do today ?",
@@ -146,11 +147,13 @@ async def sed(event):
     elif event.from_id == bot.uid:
         msg = await event.get_reply_message()
         real_nigga = msg.id
+        msg_s = event.raw_text
         user_id, reply_message_id = his_userid(
         msg.id
         )
-        await event.forward_to(
+        await tgbot.send_message(
         user_id
+        msg_s
         )
     else:
         pass
