@@ -16,6 +16,11 @@ from datetime import datetime
 from userbot.utils import admin_cmd, edit_or_reply, sudo_cmd
 import time
 from userbot import Lastupdate, bot
+import asyncio
+
+from telethon import events
+from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
+from telethon.tl.types import ChannelParticipantsAdmins
 
 from asyncio import sleep
 from os import remove
@@ -90,18 +95,28 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 
+async def is_administrator(user_id: int, message):
+    admin = False
+    async for user in client.iter_participants(
+        message.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        if user_id == user.id or user_id in bot.uid:
+            admin = True
+            break
+    return admin
 
 
 
 @tgbot.on(events.NewMessage(pattern="^/bun(?: |$)(.*)"))
 async def ban(event):
-    """ For .ban command, bans the replied/tagged person """
-    # Here laying the sanity check
+    if not await is_administrator(user_id=event.from_id, message=event):
+        await event.reply("You're not an admin!")
+        return
     chat = await event.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
     if not admin and not creator:
-        await event.reply(NO_ADMIN)
+        await event.reply("I Am Not Admin 🥺.")
         return
 
     user, reason = await get_user_from_event(event)
@@ -109,33 +124,26 @@ async def ban(event):
         pass
     else:
         return
-
-    # Announce that we're going to whack the pest
-    await event.reply("`Whacking the pest!`")
-
     try:
         await event.client(EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS))
     except BadRequestError:
-        await event.reply(NO_PERM)
+        await event.reply("No Permission Sar 🤭.")
         return
     # Helps ban group join spammers more easily
     try:
         reply = await event.get_reply_message()
         if reply:
-            await event.reply("Banning...")
+             pass
     except BadRequestError:
         await event.reply("`I dont have message nuking rights! But still he was banned!`")
         return
-    # Delete message and then tell that the command
-    # is done gracefully
-    # Shout out the ID, so that fedadmins can fban later
     if reason:
-        await event.reply(f"Loser `{str(user.id)}` was banned !!\nReason: {reason}")
+        await event.reply(f"Banned `{str(user.id)}` \nReason: {reason}")
     else:
-        await event.reply(f"Bitch `{str(user.id)}` was banned !!")
+        await event.reply(f"Banned  `{str(user.id)}` !")
 
 
-@tgbot.on(events.NewMessage(pattern="^/unban(?: |$)(.*)"))
+@tgbot.on(events.NewMessage(pattern="^/unbun(?: |$)(.*)"))
 async def nothanos(event):
     """ For .unban command, unbans the replied/tagged person """
     # Here laying the sanity check
