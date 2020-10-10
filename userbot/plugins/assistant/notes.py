@@ -117,7 +117,7 @@ async def on_snip_list(event):
         await event.reply(OUT_STR)
 
 
-@borg.on(admin_cmd("/rmnote (\S+)", func=lambda e: e.sender_id == bot.uid))
+@tgbot.on(events.NewMessage("/rmnote (\S+)", func=lambda e: e.sender_id == bot.uid))
 async def on_snip_delete(event):
     name = event.pattern_match.group(1)
     remove_snip(name)
