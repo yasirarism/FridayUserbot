@@ -152,7 +152,7 @@ async def sed(event):
         msg.id
         )
         await tgbot.send_message(
-        user_id
+        user_id,
         msg_s
         )
     else:
