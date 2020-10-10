@@ -62,7 +62,6 @@ async def on_snip(event):
 
 @tgbot.on(events.NewMessage(pattern="^/addnote ?(.*)", func=lambda e: e.sender_id == bot.uid))
 async def _(event):
-async def on_snip_save(event):
     name = event.pattern_match.group(1)
     msg = await event.get_reply_message()
     if msg:
