@@ -266,6 +266,45 @@ async def demote(event):
         return
     await event.reply("`Demoted this retard Successfully!`")
 
+@tgbot.on(events.NewMessage(pattern="^/pin(?: |$)(.*)"))
+async def pin(event):
+    userids = []
+    noob = event.from_id
+    async for user in tgbot.iter_participants(
+        event.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        userids.append(user.id)
+    if noob not in userids:
+        await event.reply("You're not an admin!")
+        return
+    """ For .pin command, pins the replied/tagged message on the top the chat. """
+    # Admin or creator check
+    chat = await event.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, return
+    if not admin and not creator:
+        await event.reply("I Need Administration Permission 🤔")
+        return
+
+    to_pin = event.reply_to_msg_id
+
+    if not to_pin:
+        await event.reply("`Reply to a message to pin it.`")
+        return
+
+    options = event.pattern_match.group(1)
+    is_silent = True
+    if options.lower() == "loud":
+        is_silent = False
+    try:
+        await event.client(UpdatePinnedMessageRequest(event.to_id, to_pin, is_silent))
+    except BadRequestError:
+        await event.reply("No Permission 🥺")
+        return
+    await event.reply("`Pinned Successfully!`")
+    user = await get_user_from_id(msg.from_id, msg)
 
 async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
