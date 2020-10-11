@@ -58,9 +58,9 @@ async def start(event):
             ]
            )
     else:
-        if in_channels(chat_id):
+        if in_channels(event.from_id):
             pass
-        elif not already_added(event.chat_id):
+        elif not already_added(event.from_id):
             add_usersid_in_db(
                 event.from_id
              )
