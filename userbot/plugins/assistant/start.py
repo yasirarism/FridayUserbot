@@ -139,8 +139,6 @@ async def all_messages_catcher(event):
             event.id
         )
 
-
-
 # Test 
 @tgbot.on(events.NewMessage(func=lambda e: e.is_private))
 async def sed(event):
