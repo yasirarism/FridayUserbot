@@ -58,6 +58,12 @@ async def start(event):
             ]
            )
     else:
+        if in_channels(chat_id):
+            pass
+        elif not already_added(event.chat_id):
+            add_usersid_in_db(
+                event.from_id
+             )
         await tgbot.send_message(
            event.chat_id,
            message=starttext,
