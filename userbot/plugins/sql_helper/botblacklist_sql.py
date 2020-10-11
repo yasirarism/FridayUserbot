@@ -16,6 +16,7 @@
 # Copied From Spechide's "No PM's Bot" 😢🤭🚶
 """ blacklist Table """
 from telethon.tl.types.messages import Messages
+from telethon import events, utils
 from telethon.tl.functions.channels import GetMessagesRequest
 from sqlalchemy import (
     Column,
