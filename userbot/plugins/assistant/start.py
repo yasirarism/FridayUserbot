@@ -139,10 +139,6 @@ async def all_messages_catcher(event):
             event.id
         )
 
-        add_usersid_in_db(
-            event.from_id
-        )
-
 
 
 # Test 
