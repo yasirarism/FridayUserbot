@@ -217,6 +217,56 @@ async def promote(event):
         await event.reply("No Permission To Promote 🤭")
         return
 
+
+@tgbot.on(events.NewMessage(pattern="^/demute(?: |$)(.*)"))
+async def demote(event):
+    userids = []
+    noob = event.from_id
+    async for user in tgbot.iter_participants(
+        event.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        userids.append(user.id)
+    if noob not in userids:
+        await event.reply("You're not an admin!")
+        return
+    """ For .demote command, demotes the replied/tagged person """
+    # Admin right check
+    chat = await event.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    if not admin and not creator:
+        await event.reply("I Am Not Admin 🤭")
+        return
+
+    rank = "mememaster"  # dummy rank, lol.
+    user = await get_user_from_event(event)
+    user = user[0]
+    if user:
+        pass
+    else:
+        return
+
+    newrights = ChatAdminRights(
+        add_admins=None,
+        invite_users=None,
+        change_info=None,
+        ban_users=None,
+        delete_messages=None,
+        pin_messages=None,
+    )
+    # Edit Admin Permission
+    try:
+        await event.client(EditAdminRequest(event.chat_id, user.id, newrights, rank))
+
+    # If we catch BadRequestError from Telethon
+    # Assume we don't have permission to demote
+    except BadRequestError:
+        await event.reply("Me No Permission 🤔")
+        return
+    await event.reply("`Demoted this retard Successfully!`")
+
+
 async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(" ", 1)
