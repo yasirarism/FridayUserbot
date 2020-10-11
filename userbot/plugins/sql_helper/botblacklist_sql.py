@@ -52,11 +52,11 @@ def add_user_to_bl(chat_id: int, reason: str):
     SESSION.commit()
 
 
-def check_is_black_list(message: Message):
+def check_is_black_list(events: event):
     """ check if user_id is blacklisted """
-    if message and message.from_id and message.from_id:
+    if events and events.from_id and events.from_id:
         try:
-            s__ = SESSION.query(BlackList).get(str(message.from_id))
+            s__ = SESSION.query(BlackList).get(str(events.from_id))
             return s__
         finally:
             SESSION.close()
